@@ -29,22 +29,22 @@ function factorial(fac) {
 function operate(operator, a, b){
     switch (operator){
         case '+':
-            add(a, b);
+            console.log(add(a, b));
             break;
         case '-':
-            subtract(a, b);
+            console.log(subtract(a, b));
             break;
         case '*':
-            multiply(a, b);
+            console.log(multiply(a, b));
             break;
         case '/':
-            divide(a, b);
+            console.log(divide(a, b));
             break;
         case 'pow':
-            power(a, b);
+            console.log(power(a, b));
             break;
         case '!':
-            factorial(a, b);
+            console.log(factorial(a));
             break;
     }
 }

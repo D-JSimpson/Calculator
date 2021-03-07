@@ -1,0 +1,16 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    background-color: blue;
+}
+#display{
+    background-color: black;
+    width: 150px;
+    height: 50px;
+}

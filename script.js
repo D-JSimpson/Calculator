@@ -25,3 +25,26 @@ function factorial(fac) {
 	}
 	return sum;
 }
+
+function operate(operator, a, b){
+    switch (operator){
+        case '+':
+            add(a, b);
+            break;
+        case '-':
+            subtract(a, b);
+            break;
+        case '*':
+            multiply(a, b);
+            break;
+        case '/':
+            divide(a, b);
+            break;
+        case 'pow':
+            power(a, b);
+            break;
+        case '!':
+            factorial(a, b);
+            break;
+    }
+}

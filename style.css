@@ -12,5 +12,15 @@ main{
 #display{
     background-color: black;
     width: 150px;
-    height: 50px;
+    height: 35px;
+    color: white;
+    text-align: right;
+}
+#user-input{
+    display: flex;
+}
+#numbers{
+    display:grid;
+    grid-template-columns: repeat(3, 40px);
+    grid-template-rows: repeat(3, 40px);
 }

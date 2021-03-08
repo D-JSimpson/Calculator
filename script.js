@@ -48,3 +48,7 @@ function operate(operator, a, b){
             break;
     }
 }
+
+const clear = document.getElementById('clear');
+const display = document.getElementById('display');
+clear.addEventListener('click', function(){display.innerText = "";});

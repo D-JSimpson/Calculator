@@ -10,11 +10,13 @@ main{
     background-color: blue;
 }
 #display{
+    display:flex;
+    justify-content: flex-end;
+    align-items: flex-end;
     background-color: black;
     width: 150px;
     height: 35px;
     color: white;
-    text-align: right;
 }
 #user-input{
     display: flex;

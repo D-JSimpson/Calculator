@@ -52,3 +52,21 @@ function operate(operator, a, b){
 const clear = document.getElementById('clear');
 const display = document.getElementById('display');
 clear.addEventListener('click', function(){display.innerText = "";});
+const buttons = document.querySelectorAll('button');
+const buttonsArr = Array.from(buttons);
+const numbers = buttonsArr.filter(button => (button.value !== ""));
+console.log(numbers);
+numbers.forEach(button => button.addEventListener('click', function(){
+    let end = (display.innerText.substring(display.innerText.length - 1,display.innerText.length));
+    if(this.value % 1 !== 0 && this.value !== '!' && this.value !== 'pow'){
+        display.innerText += (" " + this.value);
+        }
+    else if( end % 1 !== 0 && end !== '^'){display.innerText += (" " + this.value);}
+    else{
+        if(this.value == '!'){display.innerText += this.value;}
+
+        else if(this.value == 'pow'){display.innerText += '^';}
+        else {display.innerText += this.value;}
+    }
+}));
+

@@ -27,21 +27,27 @@ function factorial(fac) {
 }
 
 function operate(operator, a, b){
+    let expr = 0;
     switch (operator){
         case '+':
-            display.innerText  = add(+a, +b);
+            expr = add(+a, +b);
+            display.innerText  = expr;
             break;
         case '-':
-            display.innerText  = subtract(+a, +b);
+            expr = subtract(+a, +b);
+            display.innerText  = expr;
             break;
         case '*':
-            display.innerText  = multiply(+a, +b);
+            expr = multiply(+a, +b);
+            display.innerText  = expr;
             break;
         case '/':
-            display.innerText  = divide(+a, +b);
+            expr =  divide(+a, +b);
+            display.innerText  = expr;
             break;
         case '^':
-            display.innerText  = power(+a, +b);
+            expr =  power(+a, +b);
+            display.innerText  = expr;
             break;
         case '!':
             if(a !== ''){
@@ -49,6 +55,7 @@ function operate(operator, a, b){
             } else { display.innerText  = factorial(+b); }
             break;
     }
+    return expr;
 }
 
 const clear = document.getElementById('clear');
@@ -62,39 +69,51 @@ console.log(numbers);
 let operand1 = '';
 let operand2 = '';
 let operator = '';
+let operatorCtr = 0;
 clear.addEventListener('click', function(){display.innerText = ""; operand1 = ''; operand2 = ''; operator = '';});
 
-equals.addEventListener('click', function(){operate(operator, operand1, operand2)})
+equals.addEventListener('click', function(){
+    operand1 = operate(operator, operand1, operand2);
+    operand2 = '';
+    enableOperand2 = false;
+    operateMode = false;
+    console.log("operand 1 is " + operand1);
+    console.log(display.innerText);
+})
+
+let operateMode = false;
+let operateModeEnable = false;
+let enableOperand2 = false;
+
+clear.addEventListener('click', function(){display.innerText = ""; operand1 = ''; operand2 = ''; operator = ''; operateMode = false; operateModeEnable = false; enableOperand2 = false;});
 
 numbers.forEach(button => button.addEventListener('click', function(){
-    let end = (display.innerText.substring(display.innerText.length - 1,display.innerText.length));
-    if(this.value % 1 !== 0 && this.value !== '!' && this.value !== '^'){
-        display.innerText += (" " + this.value);
-        operator = '' + this.value + '';
-        }
-    else if(end % 1 !== 0 && end !== '^'){
-        if(this.value == '^'){
-            display.innerText += this.value;
-        } else {display.innerText += (" " + this.value);}
-        operand1 = operand2;
-        operand2 = '' + this.value + '';
-    }
-    else{
-        display.innerText += this.value;
-        if(this.value % 1 === 0){
-        operand2 += this.value;
-        }
-        if(this.value == '!'){
-            operator = '' + this.value + '';
+
+    switch(this.value){
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+        case '^':
+            operand2 = '';
+            operateMode ? operand1 = operate(operator, operand1, display.innerText) : operand1 = display.innerText;
+            operator = this.value;
+            operateModeEnable = true;
+            operateMode = false;
+             break;
+        default:
+            if(operateModeEnable){
+                display.innerText = '';
+                operateMode = true;
+                operateModeEnable = false;
+                enableOperand2 = true;
             }
-        if(this.value == '^'){
-                operator = '' + this.value + '';
-                operand1 = operand2;
-                operand2 = '';
-                }
-        console.log(operand2);
-        console.log(operand1);
-        console.log(operator);
+            if(enableOperand2){
+                operand2 += this.value;
+            }
+          display.innerText += this.value;
+            break;
+    
     }
 }));
 

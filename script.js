@@ -51,7 +51,6 @@ const buttons = document.querySelectorAll('button');
 const equals = document.getElementById('equals');
 const buttonsArr = Array.from(buttons);
 const numbers = buttonsArr.filter(button => (button.value !== ""));
-console.log(numbers);
 
 let operand1 = '';
 let operand2 = '';
@@ -63,8 +62,6 @@ equals.addEventListener('click', function(){
     operand2 = '';
     enableOperand2 = false;
     operateMode = false;
-    console.log("operand 1 is " + operand1);
-    console.log(display.innerText);
 })
 
 let operateMode = false;

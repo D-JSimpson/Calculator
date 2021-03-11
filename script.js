@@ -70,7 +70,6 @@ let operand1 = '';
 let operand2 = '';
 let operator = '';
 let operatorCtr = 0;
-clear.addEventListener('click', function(){display.innerText = ""; operand1 = ''; operand2 = ''; operator = '';});
 
 equals.addEventListener('click', function(){
     operand1 = operate(operator, operand1, operand2);

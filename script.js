@@ -18,14 +18,6 @@ function power(a, b) {
 	return Math.pow(a, b);
 }
 
-function factorial(fac) {
-	let sum = 1;
-	for(let i = fac; i > 0; i--){
-		sum*= i;
-	}
-	return sum;
-}
-
 function operate(operator, a, b){
     let expr = 0;
     switch (operator){
@@ -48,11 +40,6 @@ function operate(operator, a, b){
         case '^':
             expr =  power(+a, +b);
             display.innerText  = expr;
-            break;
-        case '!':
-            if(a !== ''){
-            display.innerText  = factorial(+a);
-            } else { display.innerText  = factorial(+b); }
             break;
     }
     return expr;

@@ -84,6 +84,11 @@ numbers.forEach(button => button.addEventListener('click', function(){
             operateModeEnable = true;
             operateMode = false;
              break;
+        case '.':
+            if(display.innerText.indexOf('.') === -1){
+                display.innerText += '.';
+            }
+                break;
         default:
             if(operateModeEnable){
                 display.innerText = '';

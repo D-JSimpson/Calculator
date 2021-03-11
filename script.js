@@ -57,11 +57,14 @@ let operand2 = '';
 let operator = '';
 let operatorCtr = 0;
 
+let deleteInner = false;
+
 equals.addEventListener('click', function(){
     operand1 = operate(operator, operand1, operand2);
     operand2 = '';
     enableOperand2 = false;
     operateMode = false;
+    deleteInner = true;
 })
 
 let operateMode = false;
@@ -98,6 +101,10 @@ numbers.forEach(button => button.addEventListener('click', function(){
             }
             if(enableOperand2){
                 operand2 += this.value;
+            }
+            if(deleteInner == true){
+                display.innerText = '';
+                deleteInner = false;
             }
           display.innerText += this.value;
             break;

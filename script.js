@@ -54,7 +54,6 @@ const numbers = buttonsArr.filter(button => (button.value !== ""));
 
 let operand1 = '';
 let operator = '';
-let operatorCtr = 0;
 
 let deleteInner = false;
 

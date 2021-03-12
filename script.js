@@ -53,25 +53,21 @@ const buttonsArr = Array.from(buttons);
 const numbers = buttonsArr.filter(button => (button.value !== ""));
 
 let operand1 = '';
-let operand2 = '';
 let operator = '';
 let operatorCtr = 0;
 
 let deleteInner = false;
 
 equals.addEventListener('click', function(){
-    operand1 = operate(operator, operand1, operand2);
-    operand2 = '';
-    enableOperand2 = false;
+    operand1 = operate(operator, operand1, display.innerText);
     operateMode = false;
     deleteInner = true;
 })
 
 let operateMode = false;
 let operateModeEnable = false;
-let enableOperand2 = false;
 
-clear.addEventListener('click', function(){display.innerText = ""; operand1 = ''; operand2 = ''; operator = ''; operateMode = false; operateModeEnable = false; enableOperand2 = false;});
+clear.addEventListener('click', function(){display.innerText = ""; operand1 = ''; operand2 = ''; operator = ''; operateMode = false; operateModeEnable = false;});
 
 numbers.forEach(button => button.addEventListener('click', function(){
 
@@ -81,38 +77,41 @@ numbers.forEach(button => button.addEventListener('click', function(){
         case '*':
         case '/':
         case '^':
-            operand2 = '';
             operateMode ? operand1 = operate(operator, operand1, display.innerText) : operand1 = display.innerText;
             operator = this.value;
             operateModeEnable = true;
             operateMode = false;
              break;
         case '.':
-            if(display.innerText.indexOf('.') === -1 && operateModeEnable == false && operand2 == ''){
+            if(display.innerText.indexOf('.') === -1 && operateModeEnable == false){
                 display.innerText += '.';
-            } else if(operateModeEnable == true){
+            } else if(operateModeEnable == true && display.innerText !== '-0'){
                 display.innerText = '.';
-                operand2 = '.'
               } else{
                 display.innerText += '.';
-                operand2 += '.';
               }
                 break;
+        case '(-)':
+            if(operateModeEnable){
+            display.innerText = '-0';
+            } else {
+                display.innerText = '-' + display.innerText;
+              }
+            break;
         default:
-            if(operateModeEnable == true && display.innerText !== '.'){
+            if(operateModeEnable == true && display.innerText !== '.' && display.innerText !== '-0' && display.innerText !== '-0.'){
                 display.innerText = '';
             }
             if(operateModeEnable){
                 operateMode = true;
                 operateModeEnable = false;
-                enableOperand2 = true;
-            }
-            if(enableOperand2){
-                operand2 += this.value;
             }
             if(deleteInner == true){
                 display.innerText = '';
                 deleteInner = false;
+            }
+            if(display.innerText == '-0'){
+                display.innerText = '-';
             }
           display.innerText += this.value;
             break;

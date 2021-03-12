@@ -88,13 +88,21 @@ numbers.forEach(button => button.addEventListener('click', function(){
             operateMode = false;
              break;
         case '.':
-            if(display.innerText.indexOf('.') === -1){
+            if(display.innerText.indexOf('.') === -1 && operateModeEnable == false && operand2 == ''){
                 display.innerText += '.';
-            }
+            } else if(operateModeEnable == true){
+                display.innerText = '.';
+                operand2 = '.'
+              } else{
+                display.innerText += '.';
+                operand2 += '.';
+              }
                 break;
         default:
-            if(operateModeEnable){
+            if(operateModeEnable == true && display.innerText !== '.'){
                 display.innerText = '';
+            }
+            if(operateModeEnable){
                 operateMode = true;
                 operateModeEnable = false;
                 enableOperand2 = true;

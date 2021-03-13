@@ -51,6 +51,10 @@ const buttons = document.querySelectorAll('button');
 const equals = document.getElementById('equals');
 const buttonsArr = Array.from(buttons);
 const numbers = buttonsArr.filter(button => (button.value !== ""));
+const functions = document.getElementById('functions');
+let childFunctions = functions.children;
+childFunctions = Array.from(childFunctions);
+childFunctions = childFunctions.filter(button => (button.value !== ""));
 
 let operand1 = '';
 let operator = '';
@@ -66,7 +70,7 @@ equals.addEventListener('click', function(){
 let operateMode = false;
 let operateModeEnable = false;
 
-clear.addEventListener('click', function(){display.innerText = ""; operand1 = ''; operand2 = ''; operator = ''; operateMode = false; operateModeEnable = false;});
+clear.addEventListener('click', function(){display.innerText = ""; operand1 = ''; operand2 = ''; operator = ''; operateMode = false; operateModeEnable = false; childFunctions.forEach(button => button.style.cssText = 'background-color: orange');});
 
 numbers.forEach(button => button.addEventListener('click', function(){
 
@@ -96,7 +100,9 @@ numbers.forEach(button => button.addEventListener('click', function(){
             if(operateModeEnable && display.innerText !== '0.'){
             display.innerText = '-0';
             } else {
+                if(display.innerText.indexOf('-') === -1){
                 display.innerText = '-' + display.innerText;
+                }
               }
             break;
         case '%':
@@ -109,6 +115,7 @@ numbers.forEach(button => button.addEventListener('click', function(){
             if(operateModeEnable){
                 operateMode = true;
                 operateModeEnable = false;
+                childFunctions.forEach(button => button.style.cssText = 'background-color: orange');
             }
             if(deleteInner == true && display.innerText !== '0.' && display.innerText !== '-0' && display.innerText !== '-0.'){
                 display.innerText = '';
@@ -120,6 +127,18 @@ numbers.forEach(button => button.addEventListener('click', function(){
           display.innerText += this.value;
             break;
     
+    }
+    switch(this.value){
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+            childFunctions.forEach(button => button.style.cssText = 'background-color: orange; color: black');
+            this.style.backgroundColor = 'rgb(32, 34, 37)';
+            this.style.color = 'orange'; 
+            break;
+        default:
+            break;
     }
 }));
 

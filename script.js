@@ -65,6 +65,13 @@ equals.addEventListener('click', function(){
     operand1 = operate(operator, operand1, display.innerText);
     operateMode = false;
     deleteInner = true;
+    this.animate([
+        {backgroundColor: 'rgb(255, 69, 0, 0.6)'},
+        {backgroundColor: 'rgb(255, 69, 0)'}
+
+    ], {
+        duration: 200
+    });
 })
 
 let operateMode = false;

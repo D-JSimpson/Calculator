@@ -99,6 +99,9 @@ numbers.forEach(button => button.addEventListener('click', function(){
                 display.innerText = '-' + display.innerText;
               }
             break;
+        case '%':
+            display.innerText /= 100;
+              break;
         default:
             if(operateModeEnable == true && display.innerText !== '0.' && display.innerText !== '-0' && display.innerText !== '-0.'){
                 display.innerText = '';

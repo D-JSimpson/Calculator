@@ -85,27 +85,29 @@ numbers.forEach(button => button.addEventListener('click', function(){
             if(display.innerText.indexOf('.') === -1 && operateModeEnable == false){
                 display.innerText += '.';
             } else if(operateModeEnable == true && display.innerText !== '-0'){
-                display.innerText = '.';
+                display.innerText = '0.';
               } else{
+                  if(display.innerText.indexOf('.') === -1){
                 display.innerText += '.';
+                  }
               }
                 break;
         case '(-)':
-            if(operateModeEnable){
+            if(operateModeEnable && display.innerText !== '0.'){
             display.innerText = '-0';
             } else {
                 display.innerText = '-' + display.innerText;
               }
             break;
         default:
-            if(operateModeEnable == true && display.innerText !== '.' && display.innerText !== '-0' && display.innerText !== '-0.'){
+            if(operateModeEnable == true && display.innerText !== '0.' && display.innerText !== '-0' && display.innerText !== '-0.'){
                 display.innerText = '';
             }
             if(operateModeEnable){
                 operateMode = true;
                 operateModeEnable = false;
             }
-            if(deleteInner == true){
+            if(deleteInner == true && display.innerText !== '0.' && display.innerText !== '-0' && display.innerText !== '-0.'){
                 display.innerText = '';
                 deleteInner = false;
             }

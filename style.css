@@ -1,28 +1,60 @@
 body{
     display: flex;
     justify-content: center;
+    background-color:rgb(32, 34, 37);
 }
 main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 300px;
-    background-color: blue;
+    height: 425px;
+    background-color:whitesmoke;
+    margin-top: 50px;
+    border: 3px solid black;
 }
 #display{
     display:flex;
     justify-content: flex-end;
     align-items: flex-end;
     background-color: black;
-    width: 150px;
-    height: 35px;
+    width: 250px;
+    height: 60px;
     color: white;
+    margin-bottom: 10px;
+    font-size: 24px;
+    border: 3px solid gray
 }
 #user-input{
     display: flex;
 }
 #numbers{
     display:grid;
-    grid-template-columns: repeat(3, 40px);
-    grid-template-rows: repeat(4, 40px);
+    grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(4, 60px);
+    column-gap: 5px;
+    row-gap: 5px;
+    margin-right: 3px;
+}
+#functions{
+    display:grid;
+    grid-template-columns: 60px;
+    grid-template-rows: repeat(5, 60px);
+    row-gap: 5px;
+}
+.orange-red{
+    background-color: orangered;
+}
+.orange{
+    background-color: orange;
+}
+button{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border: 2px solid black;
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
 }

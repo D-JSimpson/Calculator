@@ -18,30 +18,54 @@ function power(a, b) {
 	return Math.pow(a, b);
 }
 
+function bigNumberFit(num){
+let stringNum = num.toString();
+let firstNum = stringNum.substring(0, 1);
+let decimalNum = firstNum + '.';
+let restOfNum = stringNum.substring(1, 10);
+let numLength = stringNum.length;
+return decimalNum + restOfNum + "e+" + (numLength - 1);
+}
+
+function ePlusFit(){
+let eIndex = display.innerText.indexOf("e+");
+let noENum = display.innerText.substring(0, eIndex);
+let ePlusNum = display.innerText.substring(eIndex); 
+noENum = +noENum;
+let fixed = noENum.toFixed(9);
+display.innerText = fixed + ePlusNum;
+}
+
+function bigDecimalFit(){
+let decimalIndex = display.innerText.indexOf('.');
+let num = display.innerText.substring(0, decimalIndex);
+let decimal = display.innerText.substring(decimalIndex);
+let toFixedLen = 15 - num.length;
+decimal = +decimal;
+let toFixedNum = decimal.toFixed(toFixedLen);
+display.innerText = +num + +toFixedNum;
+}
+
 function operate(operator, a, b){
     let expr = 0;
     switch (operator){
         case '+':
             expr = add(+a, +b);
-            display.innerText  = expr;
             break;
         case '-':
             expr = subtract(+a, +b);
-            display.innerText  = expr;
             break;
         case '*':
             expr = multiply(+a, +b);
-            display.innerText  = expr;
             break;
         case '/':
             expr =  divide(+a, +b);
-            display.innerText  = expr;
             break;
         case '^':
             expr =  power(+a, +b);
-            display.innerText  = expr;
             break;
     }
+    display.innerText  = expr;
     return expr;
 }
 
@@ -106,11 +130,13 @@ numbers.forEach(button => button.addEventListener('click', function(){
         case '(-)':
             if(operateModeEnable && display.innerText !== '0.'){
             display.innerText = '-0';
-            } else {
-                if(display.innerText.indexOf('-') === -1){
+            } else if(display.innerText.indexOf('-') === -1) {
+                {
                 display.innerText = '-' + display.innerText;
                 }
-              }
+              } else{
+                display.innerText = display.innerText.substring(1);
+            }
             break;
         case '%':
             display.innerText /= 100;

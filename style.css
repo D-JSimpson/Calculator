@@ -11,7 +11,7 @@ main{
     width: 300px;
     height: 425px;
     background-color:whitesmoke;
-    margin-top: 50px;
+    margin-top: 20vh;
     border: 3px solid black;
 }
 #display{
@@ -24,7 +24,7 @@ main{
     color: white;
     margin-bottom: 10px;
     font-size: 24px;
-    border: 3px solid gray
+    border: 3px solid gray;
 }
 #user-input{
     display: flex;

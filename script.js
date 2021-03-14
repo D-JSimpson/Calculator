@@ -157,7 +157,9 @@ numbers.forEach(button => button.addEventListener('click', function(){
             if(display.innerText == '-0'){
                 display.innerText = '-';
             }
+            if(display.innerText.length < 16){
           display.innerText += this.value;
+            }
             break;
     
     }

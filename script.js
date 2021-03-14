@@ -24,26 +24,28 @@ let firstNum = stringNum.substring(0, 1);
 let decimalNum = firstNum + '.';
 let restOfNum = stringNum.substring(1, 10);
 let numLength = stringNum.length;
-return decimalNum + restOfNum + "e+" + (numLength - 1);
+display.innerText = decimalNum + restOfNum + "e+" + (numLength - 1);
 }
 
-function ePlusFit(){
-let eIndex = display.innerText.indexOf("e+");
-let noENum = display.innerText.substring(0, eIndex);
-let ePlusNum = display.innerText.substring(eIndex); 
+function ePlusFit(num){
+let stringNum = num.toString();
+let eIndex = stringNum.indexOf("e+");
+let noENum = stringNum.substring(0, eIndex);
+let ePlusNum = stringNum.substring(eIndex); 
 noENum = +noENum;
 let fixed = noENum.toFixed(9);
 display.innerText = fixed + ePlusNum;
 }
 
-function bigDecimalFit(){
-let decimalIndex = display.innerText.indexOf('.');
-let num = display.innerText.substring(0, decimalIndex);
-let decimal = display.innerText.substring(decimalIndex);
-let toFixedLen = 15 - num.length;
+function bigDecimalFit(num){
+let stringNum = num.toString();
+let decimalIndex = stringNum.indexOf('.');
+let number = stringNum.substring(0, decimalIndex);
+let decimal = stringNum.substring(decimalIndex);
+let toFixedLen = 15 - number.length;
 decimal = +decimal;
 let toFixedNum = decimal.toFixed(toFixedLen);
-display.innerText = +num + +toFixedNum;
+display.innerText = +number + +toFixedNum;
 }
 
 function operate(operator, a, b){
@@ -65,7 +67,18 @@ function operate(operator, a, b){
             expr =  power(+a, +b);
             break;
     }
+    if(expr > 999999999999999 && expr.toString().indexOf("e+") === -1 && expr !== Infinity){
+        bigNumberFit(expr);
+    }
+    else if(expr.toString().indexOf("e+") !== -1){
+        ePlusFit(expr);
+    }
+    else if(expr.toString().length > 16){
+        bigDecimalFit(expr);
+    }
+    else{
     display.innerText  = expr;
+    }
     return expr;
 }
 
@@ -157,7 +170,7 @@ numbers.forEach(button => button.addEventListener('click', function(){
             if(display.innerText == '-0'){
                 display.innerText = '-';
             }
-            if(display.innerText.length < 16){
+            if(display.innerText.length < 15){
           display.innerText += this.value;
             }
             break;
